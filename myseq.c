@@ -13,10 +13,12 @@
 
 int main(int argc, char *argv[])
 {	
+	printf("NUMERO DE ARGUMENTOS RECIBIDOS: %d \n" ,argc ); // El propio myseq cuenta cómo 1
 	int i;
+
 	int inicio = 1;
-	int fin;
 	int incremento = 1;
+	int fin;
 	
 	switch(argc)
 	{
@@ -39,3 +41,5 @@ int main(int argc, char *argv[])
 
 	return 0;     
 }
+
+// Ejecución: ./myseq 1 3 9
