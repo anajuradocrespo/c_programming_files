@@ -1,8 +1,8 @@
 // GENERA-PRIMOS
-/* Programa que busca los n_primeros_primos y los guarda en un fichero
+// Programa que busca los n_primeros_primos y los guarda en un fichero
 
-*/
 #include <stdio.h>
+
 #define n_primeros_primos 100
 #define output_file "primos.txt"
 
