@@ -77,43 +77,43 @@ int head(int N){
  */
 int tail(int N){
 	if (N>0){
-		dll = new_double_linked_list();   /* lista_doble es un puntero al primer nodo de la lista*/
+		//dll = new_node_dll();   		/* dll es un puntero al primer nodo de la lista*/
 
-		buffer = (char *)malloc(bufTam * sizeof(char));
+		buffer = (char *)malloc(buf_size * sizeof(char));
 
 		do{
 			charact=getline( &buffer ,&buf_size, stdin);
-			if (charact==-1) 		/* -1 si EOF o error */
+			if (charact==-1) 			/* -1 si EOF o error */
 			{
 				nerrno=errno;
-				if (nerrno!=0){ 	/* charact = -1 debido a un error (no por EOF) */
+				if (nerrno!=0){ 		/* charact = -1 debido a un error (no por EOF) */
 					fputs(strerror(nerrno), stderr);
 					output=2;
 				}
 			}
 			else
 			{
-				if (n_saved_lines==N) // En el momento en que se alcance el Nº de lineas, eliminará la 1º linea de la cola
-				{
-					delete_first_node_dll(dll);
-				}
-				else{
+				//if (n_saved_lines==N) 	/* Cuando Nº de lineas sea el especificado, se eliminará la primera linea de la cola */
+				//{
+					//delete_first_node_dll();
+				//}
+				//else{
 					n_saved_lines++;
-				}
-				insert_end_dll(dll,buffer); // Introduce al final de la cola la nueva linea
+				//}
+				insert_end_dll(buffer); /* Introduce al final de la lista la nueva linea */
 			}
 
 		}while(charact!=-1); // Permanece leyendo lineas hasta que alcanza EOF
 		if (output==0) // Solo mostrara el resultado si no ha habido errores
 		{
-			show_lines_std_output(dll); // Mostrara por pantalla las lineas almacenadas
+			show_lines_std_output(); // Mostrara por pantalla las lineas almacenadas
 
-			delete_dll(dll);
-			free(dll);
+			//delete_dll(dll);
+			//free(dll);
 		}
 	}
 	return output;
 }
 
 
-show_lines_std_output();
+
