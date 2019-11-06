@@ -45,7 +45,6 @@ s_dllist_start_end* dllist;
 int head(int N){
 	if (N>0) {
 		buffer = (char *)malloc(buf_size * sizeof(char)); 	/* Instanciamos el buffer */
-		//printf("SIZE OF BUFFER: %lu\n", sizeof(buffer));
 		do{
 			charact=getline( &buffer ,&buf_size, stdin);
 			if (charact==-1) 		/* -1 si EOF o error */
@@ -61,7 +60,6 @@ int head(int N){
 				/* Si no ha habido error se lee la linea */
 				printf("%s",buffer);	
 				N--; /* Decremento numero de lineas que quedan*/
-				// printf("N: %d\n", N ); 
 			}
 
 		} while(charact!=-1 && N>0); 
@@ -98,22 +96,22 @@ int tail(int N){
 			}
 			else
 			{
-				if (n_saved_lines==N) 	/* Cuando Nº de lineas sea el especificado, se eliminará la primera linea de la lista */
+				if (n_saved_lines==N) 	/* Cuando Nº de lineas sea el especificado, se eliminara la primera linea de la lista */
 				{
 					delete_node_start(dllist);
 				}
 				else{
 					n_saved_lines++;
 				}
-				add_node_end(dllist,buffer);	/* Introduce al final de la lista la nueva linea */
+				add_node_end(dllist, buffer); 	/* Introduce al final de la lista la nueva linea */
 			}
 
 		} while(charact!=-1); 	/* Sigue leyendo lineas hasta que alcanza EOF o CTRL+D */
-		if (output==0) // Solo mostrara el resultado si no ha habido errores
+		if (output==0)  /* Solo mostrara el resultado si no ha habido errores */
 		{
-			show_std_output(); // Mostrara por pantalla las lineas almacenadas
+			show_std_output(dllist); /* Mostrara por pantalla las lineas almacenadas */
 
-			delete_dll(dllist);
+			delete_list(dllist);
 			free(dllist);
 		}
 	}
@@ -138,21 +136,21 @@ int longlines(int N){
 	if (N>0)
 	{
 		dllist=init_list(compare_length_lines_func);
-		buffer = (char *)malloc(buffer_size * sizeof(char));
+		buffer = (char *)malloc(buf_size * sizeof(char));
 		do{
-			charact=getline( &buffer ,&buffer_size,stdin);
-			if (charact==-1) // Si el -1 es por error se podra comprobar viendo el valor de n_errno
+			charact=getline( &buffer ,&buf_size,stdin);
+			if (charact==-1) /* Si el -1 es por error se podra comprobar viendo el valor de n_errno */
 			{
 				n_errno=errno;
-				if (n_errno!=0){ // Este será el caso en el que charact valga -1 debido a un error y no por EOF
+				if (n_errno!=0){ /* Este será el caso en el que charact valga -1 debido a un error y no por EOF */
 					fputs(strerror(n_errno), stderr);
 					output=2;
 				}
 			}
 			else
 			{
-				add_node_ordered(dllist,buffer); // Introduce al final de la cola la nueva linea
-				if (n_saved_lines==N) // En el momento en que se alcance el Nº de lineas, eliminará la 1º linea de la cola
+				add_node_ordered(dllist,buffer); /* Introduce al final de la lista la nueva linea */
+				if (n_saved_lines==N) /* Cuando Nº de lineas sea el especificado, eliminará el último nodo de la lista */
 				{
 					delete_node_end(dllist);
 				}
@@ -161,8 +159,9 @@ int longlines(int N){
 				}
 			}
 
-		}while(charact!=-1); // Permanece leyendo lineas hasta que alcanza EOF
-		if (output==0) // Solo mostrara el resultado si no ha habido errores
+		}while(charact!=-1); /* Permanece leyendo lineas hasta que alcanza EOF */
+		
+		if (output==0) /* Solo mostrara el resultado si no ha habido errores */
 		{
 			show_std_output(dllist); // Mostrara por pantalla las lineas almacenadas
 			delete_list(dllist);
@@ -182,9 +181,9 @@ int longlines(int N){
  *  char* c1,char* c2: pointer to lines (char) to be compared
  *
  *  returns: integer
- 			0 if equal lenght
- 			< 0 if c2 is greater than c1
- 			> 0 if c2 is lower thatn c1
+ *			0 if equal lenght
+ *			< 0 if c2 is greater than c1
+ *			> 0 if c2 is lower thatn c1
  */
 int compare_length_lines_func(char* c1,char* c2){
 	return strlen(c1)-strlen(c2);
@@ -213,4 +212,3 @@ void show_std_output(s_dllist_start_end* lista){
 		} while(temp_linea!=lista->start);
 	}
 }
-

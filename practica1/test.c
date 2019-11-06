@@ -25,16 +25,14 @@ int is_number(char *c);
 
 int main(int argc,char** argv){
 
-	/* Si tenemos un tercer argumento, este debe ser un entero positivo.
+	/* 
+	 * Si tenemos un tercer argumento, este debe ser un entero positivo.
 	 * Si es un entero positivo, será el numero de líneas que se muestren por pantalla 
 	*/
 	char *param;
 	if (argc==3){
-		// printf("NUMERO DE ARGUMENTOS RECIBIDOS: %d \n" ,argc );
-		// printf("\n argv[2][0]: %c \n" ,argv[2][0]);
 		if(argv[2][0]=='-'){
 			param=argv[2] + 1;
-			printf("PARAM: %s \n" ,param);
 			if(strlen(argv[2])>1){
 				n_lineas=atoi(param); /* Se convierte a numero */
 			} else {
@@ -49,7 +47,6 @@ int main(int argc,char** argv){
 			MENSAJEERROR;
 		}
 	}
-	// printf("FINAL: n_lineas: %d\n", n_lineas);
 	
 	/* Se entra en este if si:
 	 * return_value == 0 . Hasta este punto los argumentos son válidos
@@ -68,7 +65,7 @@ int main(int argc,char** argv){
 					return_value=longlines(n_lineas);
 				}
 					else {
-						ret=1;
+						return_value=1;
 						fputs("El argumento o argumentos no son válidos\n",stderr);
 						MENSAJEERROR;
 					}
