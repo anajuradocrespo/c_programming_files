@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+
+/*int main() {
+
+	pid_t pid;
+	pid = fork();
+
+	if (pid < 0) { 			// Error 
+		fprintf(stderr, "Falló el fork()");
+		exit(-1);
+	}
+	else if (pid == 0) { 	// Proceso Hijo 
+		printf("Hola, soy el hijo.\n");
+		sleep(10);
+		exit(0);
+	}
+	else { 					// Proceso Padre 
+		waitpid (pid, NULL, 0);
+		printf ("El hijo terminó.\n");
+		exit(0);
+	}
+}*/
+
+
+
+int main() {
+
+	pid_t pid;
+	pid = fork();
+	int status;
+	if (pid < 0) { 					// Error 
+		fprintf(stderr, "Falló el fork()");
+		exit(-1);
+	}
+	else if (pid == 0) { 			// Proceso Hijo 
+		printf("Hola, soy el hijo.\n");
+		execlp("fd", "ls", "-la", NULL);
+		// Si execlp funciona, estas lineas que hay por debajo no se ejecutarán jamás
+		fprintf(stderr,"Se ha producido un error.\n"); 
+		exit(1);
+	}
+	else { 							// Proceso Padre 
+		wait (&status);
+		printf ("El hijo terminó.\n");
+		exit(0);
+	}
+}
+
+/*
+CÓMO FUNCIONA EXECLP()
+
+int execlp(const char *file, const char *arg, ...);
+
+Says that execlp ìs a variable argument function. It takes 2 const char *. The rest of the arguments, if any, are the additional arguments to hand over to program we want to run - also char * - all these are C strings (and the last argument must be a NULL pointer)
+
+So, the file argument is the path name of an executable file to be executed. arg is the string we want to appear as argv[0] in the executable. By convention, argv[0] is just the file name of the executable, normally it's set to the same as file.
+
+The ... are now the additional arguments to give to the executable.
+
+Say you run this from a commandline/shell:
+
+$ ls
+That'd be execlp("ls", "ls", (char *)NULL); Or if you run
+
+$ ls -l /
+That'd be execlp("ls", "ls", "-l", "/", (char *)NULL);
+
+*/
