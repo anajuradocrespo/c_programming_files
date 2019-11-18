@@ -32,23 +32,31 @@ int main() {
 	pid_t pid;
 	pid = fork();
 	int status;
+	printf("0.STATUS: %d\n", status);
+
 	if (pid < 0) { 					// Error 
 		fprintf(stderr, "Falló el fork()");
 		exit(-1);
 	}
 	else if (pid == 0) { 			// Proceso Hijo 
+		printf("1.STATUS: %d\n", status);
 		printf("Hola, soy el hijo.\n");
-		execlp("fd", "ls", "-la", NULL);
+		execlp("FD", "ls", "-la", NULL);
 		// Si execlp funciona, estas lineas que hay por debajo no se ejecutarán jamás
+		//execlp("echo", "echo", "Hola Don Pepito", NULL);
 		fprintf(stderr,"Se ha producido un error.\n"); 
 		exit(1);
 	}
-	else { 							// Proceso Padre 
+	else { 		
+		printf("2.STATUS: %d\n", status);	
+		printf("&STATUS: %p\n", &status);				// Proceso Padre 
 		wait (&status);
 		printf ("El hijo terminó.\n");
 		exit(0);
 	}
 }
+
+//https://stackoverflow.com/questions/24130990/i-used-waitstatus-and-the-value-of-status-is-256-why
 
 /*
 CÓMO FUNCIONA EXECLP()
