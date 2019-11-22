@@ -37,6 +37,7 @@ int pid;
 
 void manejador(int sig) {
 	printf("Manejador - Entro en el manejador: \n");
+	printf("Manejador - PID: %d\n", pid);
 	// Si pid == 0, significa que es un proceso hijo
 	if(pid == 0){
 		printf("Manejador -  IF PID == 0: \n");
@@ -72,16 +73,24 @@ int main() {
 }
 
 /* PROGRAM OUTPUT
-
-
+	MAIN - PID: 0
+	MAIN - SIGNAL ()
+	MAIN - Siguiente instrucción es el FORK
+	MAIN - Tras el fork, PID es ahora: 4601
+	Manejador - Entro en el manejador: 
+	Manejador - PID: 0
+	Manejador -  IF PID == 0: 
+	Manejador - Hijo: Recibida señal 30
+	Manejador - PID es: 4600
+	Manejador - KILL 
+	Manejador - Entro en el manejador: 
+	Manejador - PID: 4601
+	Manejador -  IF PID != 0: 
+	Manejador - Padre: Recibida señal 30
+	MAIN - El hijo terminó
 */
 
 // FIN EJEMPLO 2
-
-
-
-
-
 
 
 
