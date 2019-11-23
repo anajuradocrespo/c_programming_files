@@ -143,3 +143,11 @@ int main()
 		exit(0); // El proceso hijo ha finalizado
 	} 
 } 
+
+/* PROGRAM OUTPUT
+➜  T4 git:(studying_t4) ✗ ./pipes                                        
+	FD1: fd1[1] READING = -407840128 , fd1[0] WRITING = 32766
+	FD2: fd1[1] WRITING = 0 , fd2[0] READING = 0
+	HELLO THERE
+	Concatenated string HELLOforgeeks.org
+*/
