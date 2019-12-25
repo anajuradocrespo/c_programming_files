@@ -1,5 +1,5 @@
 // ESTRUCTURAS DE CONTROL
-
+// https://www.programiz.com/c-programming/c-goto-statement
 /* IF ELSE */
 	if (test expression1) {
 	   // statement(s)
