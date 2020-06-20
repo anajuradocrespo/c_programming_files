@@ -10,7 +10,7 @@ Programa que muestre todos los argumentos que se le pasan al revés:
 
 int main(int argc, char *argv[])
 {
-	//printf("NUMERO DE ARGUMENTOS RECIBIDOS: %d \n" ,argc ); // El propio nombre del archivo cuenta cómo 1
+	printf("NUMERO DE ARGUMENTOS RECIBIDOS: %d \n" ,argc ); // El propio nombre del archivo cuenta cómo 1
 	int i;
 	int j;
 	char *palabra;
@@ -19,8 +19,9 @@ int main(int argc, char *argv[])
 	if (argc > 1) {
 		for (i = argc - 1; i > 0; i--){
 			//Cogemos los argumentos desde el ultimo al primero y se lo asignamos a palabra
-			//printf("%s\n", argv[i]);
+			printf("%s\n", argv[i]);
 			palabra = argv[i];
+			printf("%s\n", palabra);
 
 			// Ya tenemos la palabra a la que hay que dar la vuelta
 			
