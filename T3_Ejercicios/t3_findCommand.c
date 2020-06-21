@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 	// CONTROLAMOS EL NUMERO DE ARGUMENTOS. QUEREMOS RECIBIR 2. La llamada a la funcion cuenta como uno!!!
 	if(argc != 2)
 	{	
-	  // hace uso del "fprintf" en vez de "echo"
 	  fprintf(stderr,"Uso: %s COMANDO\n", argv[0]);
 	  return 1;
 	}
