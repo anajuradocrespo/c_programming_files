@@ -1,7 +1,0 @@
-// EJERCICIOS PROPUESTOS - TEMA 3 - FIND COMMAND
-/*
-Escriba un programa en C llamado “findCommand” que busque en todos los directorios contenidos en la variable de entorno $PATH 
-el nombre de un mandato que se le pasa como parámetro comprobando que es ejecutable. 
-Algunas llamadas al sistema y funciones necesarias: access(2), getenv(3), strcat(3) 
-*/
-
